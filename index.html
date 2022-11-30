@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<!--
+	Indus by TEMPLATE STOCK
+	templatestock.co @templatestock
+	Released for free under the Creative Commons Attribution 3.0 license (templated.co/license)
+-->
+
+<html lang="en" class="no-js">
+	<head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1"> 
+        <title>Digit Recognizer</title>
+
+        <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css" />
+        <link rel="stylesheet" type="text/css" href="css/et-lineicon.css" />
+        <link rel="stylesheet" type="text/css" href="css/font-awesome.min.css" />
+        <link rel="stylesheet" type="text/css" href="css/style.css" />
+        <link href='http://fonts.googleapis.com/css?family=Roboto:400,500,400italic,500italic,700' rel='stylesheet' type='text/css'>
+	</head>
+	<body>
+
+        <!-- Preloader -->
+        <div class="animationload">
+            <div class="loader">
+                Loading...
+                <span></span>
+            </div>
+        </div> 
+        <!-- End Preloader -->
+
+        <!-- =========================
+                 HOME
+        ========================== -->
+
+		<section id="home">
+			<div class="content">
+                <div id="large-header" class="large-header">
+                    <canvas id="demo-canvas"></canvas>
+                    <div id="countdown_dashboard" class="home-main container">
+                        <div class="row">
+                            <div class="logo">
+                                <img src="images/logo.png" alt="logo">
+                                <p></p>
+                                <p style="color:#555555;">Scroll down</p>
+                                <img src="images/scrolldown.gif" alt="scrolldown", width="40" height="40">
+                            </div>
+                        </div> <!-- END ROW -->
+                    </div> <!-- END COUNTDOWN -->
+                </div> <!-- LARGE HEADER -->
+            </div> <!-- END CONTENT -->
+        </section>
+
+        <!-- =========================
+                 TOOL-INFO
+        ========================== -->
+        <div class="input_container">
+            <div class="drawing_board">
+                <canvas id="canvas" width="280" height="280" style="border:2px solid #000"></canvas>
+            </div>
+            <div class="tool_board">
+                <div class="row">
+                    <ul class="button_board">
+                        <button class="input_drawing">Input</button>
+                        <p></p>
+                        <button class="clear_canvas">Clear</button>
+                    </ul>
+                </div>
+                <div class="row">
+                    <ul class="info_board">
+                        <li class="result">Digit : </li>
+                        <p></p>
+                        <li class="result">Accuracy:</li>
+                    </ul>
+                    
+                </div>
+            </div>
+        </div>
+        <!-- =========================
+                 FOOTER
+        ========================== -->
+
+        <footer class="footer">
+            <div class="container text-center">
+                <div class="row">
+                    <div class="col-md-12">
+                        <ul class="social list-inline">
+                            <li class="social-btn" id="gh"><a href="https://github.com/pdg2619/Works"><i class="fa fa-github"></i></a></li>
+                            <li class="social-btn" id="lkd"><a href="#"><i class="fa fa-linkedin"></i></a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="row">
+                    <p class="copyright">Created by #</p>
+                </div>
+            </div>
+        </footer>
+            
+        <!-- JAVASCRIPTS -->
+        <script src="js/jquery.min.js"></script>
+        <script src="js/jquery.stellar.min.js"></script>
+        <script src="js/jquery.nicescroll.min.js"></script>
+        <script src="js/animated.js"></script>
+        <script src="js/main.js"></script>
+        <script src="js/canvas.js"></script>
+	</body>
+</html>
