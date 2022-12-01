@@ -38,7 +38,7 @@
       /* ==============================================
       NiceScroll
       =============================================== */
-      $("html").niceScroll({
+      /*$("html").niceScroll({
         scrollspeed: 50,
         mousescrollstep: 38,
         cursorwidth: 7,
@@ -48,7 +48,7 @@
         horizrailenabled: false,
         cursorborderradius: 0
       });
-
+*/
       /* ==============================================
       Parallax
       =============================================== */
