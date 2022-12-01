@@ -39,12 +39,46 @@ clearCanvas.addEventListener("click", () => {
 });
 
 //temporary
+
+let model;
+(async function(){  
+    console.log("model loading...");  
+    model = await tf.loadLayersModel("https://pdg2619.github.io/Digit_Recognition_Web/model/model.json")
+    console.log("model loaded..");
+})();
+
+function preprocessCanvas(image) { 
+    //resizing the input image to target size of (1, 28, 28) 
+    let resize_img = tf.browser.fromPixels(image).resizeNearestNeighbor([28, 28]).mean(2).expandDims(2).expandDims().toFloat(); 
+    console.log(resize_img.shape); 
+    return resize_img .div(255.0);
+}
+
 inputCanvas.addEventListener("click", () =>{
-    const link = document.createElement("a"); // creating <a> element
-    link.download = `${Date.now()}.jpg` ; //passing current date as link download value
-    link.href = canvas.toDataURL(); // passing canvasData as link href value
-    link.click(); // clicking link to download image
+    var imageData = canvas.toDataURL();
+    let resize_img = preprocessCanvas(canvas);  //preprocessimg
+    console.log(resize_img); 
+    let predictions = model.predict(resize_img).data();  
+    console.log(predictions)  
+    let results = Array.from(predictions);    
+    displayLabel(results);    
+    console.log(results);
+    console.log("check"); /*load check */
 });
+
+//output
+function displayLabel(data) { 
+    var max = data[0];    
+    var maxIndex = 0;     
+    for (var i = 1; i < data.length; i++) {        
+      if (data[i] > max) {            
+        maxIndex = i;            
+        max = data[i];        
+      }
+    }
+document.getElementById('prediction').innerHTML = "Prediction : "+ maxIndex;  
+document.getElementById('confidence').innerHTML = "Confidence : "+(max*100).toFixed(2) + "%";
+}
 
 
 canvas.addEventListener("mousedown",startDraw);
