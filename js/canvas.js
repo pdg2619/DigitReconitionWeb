@@ -36,6 +36,8 @@ const drawing = (e) => {
 clearCanvas.addEventListener("click", () => {
     ctx.clearRect(0, 0, canvas.width, canvas.height); // clearing whole canvas
     setCanvasBackground();
+    document.getElementById('prediction').innerHTML = "Prediction : ";  
+    document.getElementById('confidence').innerHTML = "Confidence : ";
 });
 
 //temporary
@@ -54,16 +56,17 @@ function preprocessCanvas(image) {
     return resize_img .div(255.0);
 }
 
-inputCanvas.addEventListener("click", () =>{
+inputCanvas.addEventListener("click",async function(){  
     var imageData = canvas.toDataURL();
+    console.log(imageData)
     let resize_img = preprocessCanvas(canvas);  //preprocessimg
-    console.log(resize_img); 
-    let predictions = model.predict(resize_img).data();  
+    console.log(resize_img);
+    let predictions = await model.predict(resize_img).data();  
     console.log(predictions)  
-    let results = Array.from(predictions);    
+    let results = Array.from(predictions);
     displayLabel(results);    
     console.log(results);
-    console.log("check"); /*load check */
+    console.log("check"); /*load check */    
 });
 
 //output
