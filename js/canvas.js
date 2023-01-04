@@ -59,7 +59,7 @@ clearCanvas.addEventListener("click", () => {
 let model;
 (async function(){  
     console.log("model loading...");  
-    model = await tf.loadLayersModel("https://github.com/pdg2619/digit_recog_web/blob/main/model/model.json")
+    model = await tf.loadLayersModel("https://pdg2619.github.io/digit_recog_web/models/model.json")
     console.log("model loaded..");
 })();
 
