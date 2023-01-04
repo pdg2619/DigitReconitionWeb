@@ -1,1 +1,1 @@
-# DigitReconition Web
+# Digit Reconition Web App
