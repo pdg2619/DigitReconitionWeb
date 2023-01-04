@@ -20,7 +20,6 @@
     $options: {},
     $loader: $(".loader"),
     $animationload: $(".animationload"),
-    $countdown: $('#countdown_dashboard'),
 
     bindEvents: function() {
       //binding events

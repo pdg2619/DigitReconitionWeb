@@ -50,7 +50,7 @@
         ========================== -->
         <div class="input_container">
             <div class="drawing_board">
-                <canvas id="canvas" width="280" height="280" style="border:2px solid #000"></canvas>
+                <canvas id="canvas" width="280" height="280" style="border:3px solid #483d8b"></canvas>
             </div>
             <div class="tool_board">
                 <div class="row">
@@ -62,11 +62,124 @@
                 </div>
                 <div class="row">
                     <ul class="info_board">
-                        <li class="prediction" id="prediction">Prediction :</li>
+                        <canvas id="img_preview" width="28" height="28" style="border:1px solid #CCC"></canvas>
                         <p></p>
-                        <li class="confidence" id="confidence">Confidence :</li>
+                        <li class="prediction" id="prediction">Prediction : </li>
+                        <p></p>
+                        <li><u>Model Accuracy : 98.7 %</u></li>
                     </ul>
-                    
+                </div>
+            </div>
+            <div class="chart">
+                <div>
+                    <div class="digit">
+                        <img src="images/digit0.png">
+                    </div>
+                    <div class="bar" style="--clr1: #191970; --clr2: #8B0000;">
+                        <span class="progress" id="bar0"></span>
+                    </div>
+                    <div class="statboard">
+                        <h1 id="stat0">0%</h1>
+                    </div>
+                </div>
+                <div>
+                    <div class="digit">
+                        <img src="images/digit1.png">
+                    </div>
+                    <div class="bar" style="--clr1: #191970; --clr2: #8B0000;">
+                        <span class="progress" id="bar1"></span>
+                    </div>
+                    <div class="statboard">
+                        <h1 id="stat1">0%</h1>
+                    </div>
+                </div>
+                <div>
+                    <div class="digit">
+                        <img src="images/digit2.png">
+                    </div>
+                    <div class="bar" style="--clr1: #191970; --clr2: #8B0000;">
+                        <span class="progress" id="bar2"></span>
+                    </div>
+                    <div class="statboard">
+                        <h1 id="stat2">0%</h1>
+                    </div>
+                </div>
+                <div>
+                    <div class="digit">
+                        <img src="images/digit3.png">
+                    </div>
+                    <div class="bar" style="--clr1: #191970; --clr2: #8B0000;">
+                        <span class="progress" id="bar3"></span>
+                    </div>
+                    <div class="statboard">
+                        <h1 id="stat3">0%</h1>
+                    </div>
+                </div>
+                <div>
+                    <div class="digit">
+                        <img src="images/digit4.png">
+                    </div>
+                    <div class="bar" style="--clr1: #191970; --clr2: #8B0000;">
+                        <span class="progress" id="bar4"></span>
+                    </div>
+                    <div class="statboard">
+                        <h1 id="stat4">0%</h1>
+                    </div>
+                </div>
+                <div>
+                    <div class="digit">
+                        <img src="images/digit5.png">
+                    </div>
+                    <div class="bar" style="--clr1: #191970; --clr2: #8B0000;">
+                        <span class="progress" id="bar5"></span>
+                    </div>
+                    <div class="statboard">
+                        <h1 id="stat5">0%</h1>
+                    </div>
+                </div>
+                <div>
+                    <div class="digit">
+                        <img src="images/digit6.png">
+                    </div>
+                    <div class="bar" style="--clr1: #191970; --clr2: #8B0000;">
+                        <span class="progress" id="bar6"></span>
+                    </div>
+                    <div class="statboard">
+                        <h1 id="stat6">0%</h1>
+                    </div>
+                </div>
+                <div>
+                    <div class="digit">
+                        <img src="images/digit7.png">
+                    </div>
+                    <div class="bar" style="--clr1: #191970; --clr2: #8B0000;">
+                        <span class="progress" id="bar7"></span>
+                    </div>
+                    <div class="statboard">
+                        <h1 id="stat7">0%</h1>
+                    </div>
+                </div>
+                <div>
+                    <div class="digit">
+                        <img src="images/digit8.png">
+                    </div>
+                    <div class="bar" style="--clr1: #191970; --clr2: #8B0000;">
+                        <span class="progress" id="bar8"></span>
+                    </div>
+                    <div class="statboard">
+                        <h1 id="stat8">0%</h1>
+                    </div>
+                </div>
+                <div>
+                    <div class="digit">
+                        <img src="images/digit9.png">
+                    </div>
+                    <div class="bar" style="--clr1: #191970; --clr2: #8B0000;">
+                        <span class="progress" id="bar9"></span>
+                    </div>
+                    <div class="statboard">
+                        <h1 id="stat9">0%</h1>
+                    </div>
                 </div>
             </div>
         </div>

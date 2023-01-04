@@ -2,15 +2,19 @@ const canvas = document.getElementById("canvas"),
 clearCanvas = document.querySelector(".clear_canvas"),
 inputCanvas = document.querySelector(".input_drawing")
 ctx = canvas.getContext("2d");
+ctx2 = img_preview.getContext("2d");
 
 // Gloabal variables with default value
-let isDrawing = false,
-brushWidth = 5;
+let isDrawing = false, brushWidth = 8, bruchColor = '#fff';
+let mouselbtn = false;
+const bars = document.querySelectorAll(".progress");
 
-const setCanvasBackground = () => {
+function setCanvasBackground() {
     //setting whole canvas background to white, so the downloaded imag background will be white
-    ctx.fillStyle = '#fff';
+    ctx.fillStyle = '#000';
     ctx.fillRect(0, 0, canvas.width, canvas.height);
+    ctx2.fillStyle = '#000';
+    ctx2.fillRect(0, 0, img_preview.width, img_preview.height);
 }
 
 window.addEventListener("load", () => {
@@ -25,6 +29,7 @@ const startDraw = () => {
     isDrawing = true;
     ctx.beginPath(); // creating new path to draw
     ctx.lineWidth = brushWidth; // passing brush Size as line width
+    ctx.strokeStyle = bruchColor;
 }
 
 const drawing = (e) => {
@@ -33,15 +38,24 @@ const drawing = (e) => {
     ctx.stroke(); // drawing·filling line with color
 }
 
+// Clear
 clearCanvas.addEventListener("click", () => {
+    mouselbtn = false;
     ctx.clearRect(0, 0, canvas.width, canvas.height); // clearing whole canvas
+    ctx2.clearRect(0, 0, img_preview.width, img_preview.height); // clearing img_preview
     setCanvasBackground();
-    document.getElementById('prediction').innerHTML = "Prediction : ";  
-    document.getElementById('confidence').innerHTML = "Confidence : ";
+    document.getElementById('prediction').innerHTML = "Predicition : ";  
+    // document.getElementById('confidence').innerHTML = "Confidence : ";
+    
+    for (var i = 0; i < 10; i++){
+        document.getElementById('stat'+i).innerHTML = "0%";
+    }
+    bars.forEach(item =>{
+        item.style.width = 0
+    })
 });
 
-//temporary
-
+// model prediciton
 let model;
 (async function(){  
     console.log("model loading...");  
@@ -49,39 +63,71 @@ let model;
     console.log("model loaded..");
 })();
 
-function preprocessCanvas(image) { 
-    //resizing the input image to target size of (1, 28, 28) 
-    let resize_img = tf.browser.fromPixels(image).resizeNearestNeighbor([28, 28]).mean(2).expandDims(2).expandDims().toFloat(); 
-    console.log(resize_img.shape); 
-    return resize_img .div(255.0);
-}
-
 inputCanvas.addEventListener("click",async function(){  
-    var imageData = canvas.toDataURL();
-    console.log(imageData)
-    let resize_img = preprocessCanvas(canvas);  //preprocessimg
-    console.log(resize_img);
+    let canvas_img = document.getElementById("canvas"); //load canvas img
+    // create processing img object
+    let img_pre = document.getElementById("img_preview");
+    let img_debug = img_pre.toDataURL();
+    console.log(img_debug);
+    let ctx = img_pre.getContext("2d");
+    ctx.drawImage(canvas_img, 0, 0, 28, 28);
+
+    // prediction
+    let resize_img = tf.browser.fromPixels(canvas_img).resizeNearestNeighbor([28, 28]).mean(2).expandDims(2).expandDims().toFloat();  //preprocessimg;
     let predictions = await model.predict(resize_img).data();  
-    console.log(predictions)  
+    console.log(predictions)  // debug code
     let results = Array.from(predictions);
-    displayLabel(results);    
-    console.log(results);
-    console.log("check"); /*load check */    
+    displayLabel(results);
 });
 
+
 //output
-function displayLabel(data) { 
+function displayLabel(pre_data) {
+    var data = []; 
+    for (var i = 0; i < pre_data.length; i++){
+        data.push(Math.round(pre_data[i] * 100) / 100 );
+    }
+    
     var max = data[0];    
-    var maxIndex = 0;     
-    for (var i = 1; i < data.length; i++) {        
-      if (data[i] > max) {            
-        maxIndex = i;            
-        max = data[i];        
+    var maxIndex = 0; 
+    var sumIndex = arrSum(data);
+    for (var j = 1; j < data.length; j++) {        
+      if (data[j] > max) {            
+        maxIndex = j;            
+        max = data[j];        
       }
     }
-document.getElementById('prediction').innerHTML = "Prediction : "+ maxIndex;  
-document.getElementById('confidence').innerHTML = "Confidence : "+(max*100).toFixed(2) + "%";
+    
+    let stat = new Array();
+    for (var k = 0; k < data.length; k++){
+        stat.push(Math.round((Math.round(data[k] * 100) / sumIndex) * 100) / 100);
+        document.getElementById('stat'+k).innerHTML = stat[k] + "%";
+        document.getElementsByClassName('progress')[k].setAttribute('id', stat[k]);
+    }
+
+    bars.forEach(item =>{
+        let value = item.id;
+        let contador = 0;
+        let interval = setInterval(function(){
+            item.style.width = contador + "%"
+            if (contador == value){
+                clearInterval(interval);
+            }
+            contador++;
+        },8);
+    })
+    
+    for (var l = 0; l < data.length; l++){
+        document.getElementsByClassName('progress')[l].setAttribute('id', 'bar'+l);
+    }
+
+document.getElementById('prediction').innerHTML = "Predicition : "+maxIndex;  
+// document.getElementById('confidence').innerHTML = "Confidence : "+(max*100).toFixed(2) + "%";
 }
+
+function arrSum(arr) {
+    return arr.reduce((a, b) => (Math.round(a * 100) / 100) + (Math.round(b * 100) / 100), 0);
+} 
 
 
 canvas.addEventListener("mousedown",startDraw);

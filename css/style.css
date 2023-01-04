@@ -1,9 +1,3 @@
- /*
-	Indus by TEMPLATE STOCK
-	templatestock.co @templatestock
-	Released for free under the Creative Commons Attribution 3.0 license (templated.co/license)
-*/
-
 /* Settings In style.css :
     1.General
     2.Home/Countdown
@@ -131,8 +125,8 @@ body{
     border-radius: 5px;
 }
 .button_board .input_drawing{
-    background: #181a31;
-    border: 1px solid #181a31;
+    background: #191970;
+    border: 1px solid #191970;
     transition: all 0.3s ease;
 }
 .input_drawing:hover{
@@ -155,6 +149,68 @@ body{
 .input_container .validation{
     border: 1px solid #ff0000;
 }
+
+/* chart */
+.chart{
+    background: #fff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.chart{
+    height: 350px;
+    width: 300px;
+}
+
+.chart div{
+    display: flex;
+    align-items: center; 
+    margin-bottom: 3px;
+}
+
+.chart div .image{
+    background: #fff;
+    height: 100px;
+    width: 100px;
+    display: flex;
+    justify-content:center;
+    align-items: center;
+}
+
+.chart div .digit img{
+    height: 24px;
+    transition: transform 0.3s;
+}
+
+.chart div .bar{
+    height: 20px;
+    width : 180px;
+    background: #efefef;
+    position: relative;
+    margin-left: 3px;
+    overflow: hidden;
+}
+
+.chart div .progress{
+    margin-top: 15px;
+    height: 28px;
+    background: linear-gradient(to right, var(--clr1), var(--clr2));
+}
+
+.chart div .statboard{
+    height: 20px;
+    width: 50px;
+    position: flex;
+    margin-left: 10px;
+}
+
+.chart div .statboard h1{
+    position: flex;
+    font-size: 11px;
+}
+
 /*-------------------------------------------------------------------*/
 /*  4.CONTACT
 /*-------------------------------------------------------------------*/
