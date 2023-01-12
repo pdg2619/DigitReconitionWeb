@@ -5,7 +5,7 @@ ctx = canvas.getContext("2d");
 ctx2 = img_preview.getContext("2d");
 
 // Gloabal variables with default value
-let isDrawing = false, brushWidth = 11, bruchColor = '#fff';
+let isDrawing = false, brushWidth = 15, bruchColor = '#fff';
 let mouselbtn = false;
 const bars = document.querySelectorAll(".progress");
 
@@ -68,7 +68,7 @@ inputCanvas.addEventListener("click",async function(){
     // create processing img object
     let img_pre = document.getElementById("img_preview");
     let ctx = img_pre.getContext("2d");
-    ctx.drawImage(canvas_img, 0, 0, 28, 28);
+    ctx.drawImage(canvas_img, 4, 4, 20, 20);
 
     // prediction
     let resize_img = tf.browser.fromPixels(canvas_img).resizeNearestNeighbor([28, 28]).mean(2).expandDims(2).expandDims().toFloat();  //preprocessimg;
